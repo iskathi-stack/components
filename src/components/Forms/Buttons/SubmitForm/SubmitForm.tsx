@@ -3,7 +3,7 @@ import Button from '../../../Button';
 import { ButtonProps } from '../../../Button/Button';
 import Loader from '../../../Loader';
 import { useFormContext } from '../../Form/Form.context';
-import styles from './SubmitForm.stylex';
+import styles from './SubmitForm.style';
 
 export const SubmitForm: FC<ButtonProps> = ({ sx = [], disabled, ...props }) => {
     const { validationState, formState } = useFormContext();

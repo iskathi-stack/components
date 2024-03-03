@@ -10,9 +10,10 @@ import {
     useMemo,
     useState,
 } from 'react';
+import { useTheme } from '../../../styles/themes';
 import { FieldProps, ValidatorFailResult } from '../Types/FormsTypes';
 import { FormContext, FormContextProvider, FormState, FormValidationState } from './Form.context';
-import styles from './Form.stylex';
+import styles from './Form.style';
 
 export type FormProps<TPayload extends Record<string, unknown>, TResult = unknown> = {
     onSubmit: (data: TPayload) => Promise<TResult>;
@@ -25,6 +26,7 @@ export const Form = <TPayload extends Record<string, unknown | null>, TResult = 
     sx = [],
     ...formProps
 }: PropsWithChildren<FormProps<TPayload>>) => {
+    const theme = useTheme();
     const [formState, setFormState] = useState<FormState<TResult>>({ status: 'idle' });
 
     const formFields = useMemo(
@@ -115,7 +117,7 @@ export const Form = <TPayload extends Record<string, unknown | null>, TResult = 
 
     return (
         <FormContextProvider value={context}>
-            <form {...props(styles.form, ...sx)} onSubmit={handleSubmit} {...formProps}>
+            <form {...props(theme, styles.form, ...sx)} onSubmit={handleSubmit} {...formProps}>
                 {children}
             </form>
         </FormContextProvider>

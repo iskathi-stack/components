@@ -1,12 +1,23 @@
-import { ComponentPropsWithoutRef, FC } from 'react';
 import { StyleXStyles, props } from '@stylexjs/stylex';
-import styles from './Button.stylex';
+import { ComponentPropsWithoutRef, FC } from 'react';
+import { useTheme } from '../../styles/themes';
+import styles from './Button.style';
 
-export type ButtonProps = { sx?: StyleXStyles[] } & Omit<ComponentPropsWithoutRef<'button'>, 'className'>;
+export type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
 
-export const Button: FC<ButtonProps> = ({ children, sx = [], disabled, ...buttonProps }) => {
+export type ButtonProps = { variant?: ButtonVariant; sx?: StyleXStyles[] } & Omit<
+    ComponentPropsWithoutRef<'button'>,
+    'className'
+>;
+
+export const Button: FC<ButtonProps> = ({ children, sx = [], disabled, variant = 'primary', ...buttonProps }) => {
+    const theme = useTheme();
     return (
-        <button {...props(styles.button, disabled && styles.disabled, ...sx)} disabled={disabled} {...buttonProps}>
+        <button
+            {...props(theme, styles.button, disabled && styles.disabled, styles[variant], ...sx)}
+            disabled={disabled}
+            {...buttonProps}
+        >
             {children}
         </button>
     );
