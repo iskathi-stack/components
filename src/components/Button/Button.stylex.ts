@@ -1,0 +1,22 @@
+import { create } from '@stylexjs/stylex';
+
+import { colors, spacing, fontSize, fontWeight } from '../../styles/variables.stylex';
+
+const styles = create({
+    button: {
+        background: colors.buttonPrimary,
+        color: colors.buttonPrimaryText,
+        fontSize: fontSize.large,
+        fontWeight: fontWeight.medium,
+        padding: spacing.medium,
+        border: 'none',
+        borderRadius: spacing.medium,
+        cursor: 'pointer',
+    },
+    disabled: {
+        opacity: 0.5,
+        pointerEvents: 'none',
+    },
+});
+
+export default styles;
