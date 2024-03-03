@@ -12,6 +12,7 @@ type Story = StoryObj<typeof meta>;
 export const PlainButton = {
     args: {
         children: 'Press me',
+        onClick: () => alert('clicked'),
     },
     name: 'Button',
 } satisfies Story;
@@ -19,6 +20,7 @@ export const PlainButton = {
 export const DisabledButton = {
     args: {
         children: 'Press me',
+        onClick: () => alert('clicked'),
         disabled: true,
     },
     name: 'Button (disabled)',

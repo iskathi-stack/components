@@ -1,6 +1,6 @@
 import { create } from '@stylexjs/stylex';
 
-import { colors, spacing, fontSize, fontWeight } from '../../styles/variables.stylex';
+import { colors, fontSize, fontWeight, spacing } from '../../styles/variables.stylex';
 
 const styles = create({
     button: {
@@ -8,9 +8,9 @@ const styles = create({
         color: colors.buttonPrimaryText,
         fontSize: fontSize.large,
         fontWeight: fontWeight.medium,
-        padding: spacing.medium,
+        padding: '1em',
         border: 'none',
-        borderRadius: spacing.medium,
+        borderRadius: spacing.small,
         cursor: 'pointer',
     },
     disabled: {
