@@ -9,7 +9,9 @@ import svgr from 'vite-plugin-svgr';
 export default defineConfig({
     plugins: [
         react(),
-        styleX(),
+        styleX({
+            unstable_moduleResolution: { type: 'commonJS', rootDir: __dirname },
+        }),
         svgr({
             include: '**/*.svg',
         }),

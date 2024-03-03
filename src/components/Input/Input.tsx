@@ -1,8 +1,9 @@
 import { StyleXStyles, props } from '@stylexjs/stylex';
 import { ChangeEvent, ComponentPropsWithoutRef, FC, ReactNode, useCallback } from 'react';
 import { create } from '../../helpers/testidHelpers';
+import { useTheme } from '../../styles/themes';
 import Text from '../Text';
-import styles from './Input.stylex';
+import styles from './Input.style';
 import TestIds from './Input.testid';
 
 export type InputProps = {
@@ -29,6 +30,7 @@ export const Input: FC<InputProps> = ({
     inputProps = {},
     ...labelProps
 }) => {
+    const theme = useTheme();
     const changeHandler = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
             onChange(event.target.value);
@@ -37,22 +39,27 @@ export const Input: FC<InputProps> = ({
     );
 
     return (
-        <label {...create(TestIds.Root)} {...props(styles.root)} {...labelProps}>
-            <Text {...create(TestIds.Label)} fontSize="large" fontWeight="light" {...props(styles.label, ...labelsx)}>
+        <label {...create(TestIds.Root)} {...props(theme, styles.root)} {...labelProps}>
+            <Text
+                {...create(TestIds.Label)}
+                fontSize="large"
+                fontWeight="light"
+                {...props(theme, styles.label, ...labelsx)}
+            >
                 {label}
             </Text>
             <input
                 {...create(TestIds.Input)}
                 value={value}
                 onChange={changeHandler}
-                {...props(styles.input, ...inputsx, styles[`input_${status}`])}
+                {...props(theme, styles.input, ...inputsx, styles[`input_${status}`])}
                 {...inputProps}
             />
             <Text
                 {...create(TestIds.Info)}
                 fontSize="small"
                 fontWeight="light"
-                {...props(styles.info, styles[`info_${status}`])}
+                {...props(theme, styles.info, styles[`info_${status}`])}
             >
                 {info}
             </Text>

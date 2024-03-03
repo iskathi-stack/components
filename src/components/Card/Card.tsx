@@ -1,6 +1,7 @@
 import { StyleXStyles, props } from '@stylexjs/stylex';
 import { ComponentPropsWithoutRef, FC, PropsWithChildren } from 'react';
-import styles from './Card.stylex';
+import { useTheme } from '../../styles/themes';
+import styles from './Card.style';
 
 export type CardProps = {
     centered?: boolean;
@@ -8,8 +9,10 @@ export type CardProps = {
 } & Omit<ComponentPropsWithoutRef<'div'>, 'className'>;
 
 export const Card: FC<PropsWithChildren<CardProps>> = ({ sx = [], centered = false, children, ...divProps }) => {
+    const theme = useTheme();
+
     return (
-        <div {...props(styles.card, centered && styles.centered, ...sx)} {...divProps}>
+        <div {...props(theme, styles.card, centered && styles.centered, ...sx)} {...divProps}>
             {children}
         </div>
     );
