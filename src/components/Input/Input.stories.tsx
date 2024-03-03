@@ -1,8 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Input from './';
+import { useState } from 'react';
+import Input, { InputProps } from '.';
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const TestInput = ({ value, onChange, ...props }: InputProps) => {
+    const [trackedValue, setValue] = useState(value);
+    return <Input value={trackedValue} onChange={setValue} {...props} />;
+};
 
 const meta = {
     component: Input,
+    render: TestInput,
 } satisfies Meta<typeof Input>;
 
 export default meta;
