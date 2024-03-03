@@ -22,3 +22,6 @@ Preview:  https://iskathi-stack.github.io/components/
 - prettier
 - husky
 - storybook
+
+# WIP
+- theming
