@@ -25,3 +25,6 @@ Preview:  https://iskathi-stack.github.io/components/
 
 # WIP
 - theming
+
+# TODO
+- support different style providers (tailwing, css modules)
